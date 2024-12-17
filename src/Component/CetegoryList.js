@@ -4,10 +4,10 @@ import CategoryItem from "./CategoryItem";
 const CategoryList = () => {
   return (
     <>
-      <div className="App text-center mt-4 secondory-color">
+      <div className="App background text-center mt-4 secondory-color">
         <h1 className="font-bold">Category</h1>
 
-        <div className="d-flex p-3 justify-content-center flex-warp">
+        <div className="d-flex p-3 justify-content-center flex-wrap">
           <CategoryItem />
           <CategoryItem />
           <CategoryItem />
