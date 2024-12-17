@@ -6,7 +6,7 @@ import RecipeList from "./RecipeList ";
 
 const Home = () => {
   return (
-    <div className="Home-Page">
+    <div className="Home-Page background">
       <div className="Wlc-Contanier">
         <h1>Welcome to TRIDISH !!!</h1>
         <h4>

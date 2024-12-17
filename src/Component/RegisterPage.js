@@ -3,7 +3,6 @@ import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import logo from "../assets/images/logo.webp";
 
-
 const RegisterPage = () => {
   const [activeTab, setActiveTab] = useState("SignIn");
   const [moveLeft, setMoveLeft] = useState(false);
@@ -26,37 +25,42 @@ const RegisterPage = () => {
   }, [activeTab]);
 
   return (
-    <div className="register-page">
-      <div className="content" style={{ height: contentHeight }}>
-        <div className={`tabs ${moveTabs ? "move-right" : ""}`} role="tablist">
-          <button
-            className={activeTab === "SignIn" ? "tab active" : "tab"}
-            onClick={() => setActiveTab("SignIn")}
-            role="tab"
-            aria-selected={activeTab === "SignIn"}
+    <div className="background">
+      <div className="register-page ">
+        <div className="content" style={{ height: contentHeight }}>
+          <div
+            className={`tabs ${moveTabs ? "move-right" : ""}`}
+            role="tablist"
           >
-            Sign In
-          </button>
-          <button
-            className={activeTab === "SignUp" ? "tab active" : "tab"}
-            onClick={() => setActiveTab("SignUp")}
-            role="tab"
-            aria-selected={activeTab === "SignUp"}
+            <button
+              className={activeTab === "SignIn" ? "tab active" : "tab"}
+              onClick={() => setActiveTab("SignIn")}
+              role="tab"
+              aria-selected={activeTab === "SignIn"}
+            >
+              Sign In
+            </button>
+            <button
+              className={activeTab === "SignUp" ? "tab active" : "tab"}
+              onClick={() => setActiveTab("SignUp")}
+              role="tab"
+              aria-selected={activeTab === "SignUp"}
+            >
+              Sign Up
+            </button>
+          </div>
+
+          <div
+            className={`tab-content ${moveLeft ? "move-left" : ""}`}
+            style={{ height: tabContentHeight }}
           >
-            Sign Up
-          </button>
-        </div>
+            {activeTab === "SignIn" && <SignIn />}
+            {activeTab === "SignUp" && <SignUp />}
+          </div>
 
-        <div
-          className={`tab-content ${moveLeft ? "move-left" : ""}`}
-          style={{ height: tabContentHeight }}
-        >
-          {activeTab === "SignIn" && <SignIn />}
-          {activeTab === "SignUp" && <SignUp />}
-        </div>
-
-        <div className={`welcoming-statement ${moveLeft ? "move-left" : ""}`}>
-          <img src={logo} alt="Logo"/>
+          <div className={`welcoming-statement ${moveLeft ? "move-left" : ""}`}>
+            <img src={logo} alt="Logo" />
+          </div>
         </div>
       </div>
     </div>

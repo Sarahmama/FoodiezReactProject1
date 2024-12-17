@@ -7,7 +7,7 @@ import RegisterPage from "./Component/RegisterPage";
 import Ingredient from "./Component/Ingredient";
 import Home from "./Component/Home";
 import Cetegories from "./Component/CetegoryList";
-import Recipes from "./Component/Recipes";
+import Recipes from "./Component/RecipeList ";
 import AboutUs from "./Component/AboutUs";
 import RecipeDetail from "./Component/RecipeDetail";
 import Footer from "./Component/Footer";

@@ -4,7 +4,7 @@ import RecipeItem from "./RecipeItem";
 const RecipeList = () => {
   return (
     <>
-      <div className="App text-center mt-4 secondory-color">
+      <div className="App background text-center mt-4 secondory-color">
         <h1 className="font-bold">Recipes</h1>
 
         <div className="d-flex p-3 justify-content-center flex-wrap">

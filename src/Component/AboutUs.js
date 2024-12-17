@@ -3,7 +3,7 @@ import Logo from "../../src/assets/images/logo.webp";
 
 const AboutUs = () => {
   return (
-    <div className="bg-[url('./assets//images/pattern.png')]">
+    <div className="background">
       <div className="flex flex-col items-center justify-center min-h-screen  ">
         <div className=" max-w-lg  px-6 py-8 bg-white rounded-md shadow-lg m-20 text-sm">
           <h1 className="text-3xl font-bold text-[#184548] mb-4 flex justify-center text-cinter font-monospace">
