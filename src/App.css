@@ -1,0 +1,237 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+<<<<<<< HEAD
+.App{
+height: 100vh;
+=======
+.App {
+  height: 100%;
+>>>>>>> origin/main
+}
+.register-page {
+  height: 100vh;
+  background-image: url("/Users/noura/Desktop/foodiezreactproject/FoodiezReactProject/src/assets/images/pattern.png");
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.white-text {
+  color: #184548;
+}
+
+:root {
+  --tab-bg: #184548; 
+  --tab-text-color: #e4655c; 
+  --tab-active-bg: #ffffff; 
+  --tab-active-text-color: #184548;
+  --tab-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  --tab-font-weight: bold;
+  --tab-font-size: 1.2rem;
+  --tab-border-radius: 100px;
+  --tab-margin-bottom: 10px;
+}
+
+.tab {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  border-right: none;
+  cursor: pointer;
+  box-shadow: var(--tab-shadow);
+  background-color: #e4655c;
+  color:  #ffffff;
+  font-weight: var(--tab-font-weight);
+  font-size: var(--tab-font-size);
+  border-radius: var(--tab-border-radius);
+  margin-bottom: var(--tab-margin-bottom);
+  transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+
+.tab.active {
+  background-color: #184548; 
+  color: #ffffff; 
+}
+
+
+.tab:hover {
+  background-color: lighten(var(--tab-bg), 10%);
+  color: darken(var(--tab-text-color), 10%);
+}
+
+
+.tab:active {
+  background-color: var(--tab-active-bg); 
+  color: var(--tab-text-color);
+}
+
+
+.tabs {
+  display: flex;
+  height: 170px;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 10%;
+  transition: transform 1.5s ease;
+}
+
+.tabs.move-right {
+  transform: translateX(+900%);
+}
+
+.tab-content {
+  width: 50%;
+  transition: transform 1.5s ease, height 2s ease;
+}
+
+.tab-content.move-left {
+  transform: translateX(+60%);
+}
+
+.w-100 button{
+  background-color: #184548;
+}
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #184548;
+  --bs-btn-border-color: #184548;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #e4655c;
+  --bs-btn-hover-border-color: #e4655c;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #184548;
+  --bs-btn-active-border-color: #184548;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #184548;
+  --bs-btn-disabled-border-color: #184548;
+}
+
+.content {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 60%;
+  background-color: #ffffff;
+  border-radius: 50px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  transition: height 1s ease;
+}
+
+.vh-100 {
+  height: auto !important;
+}
+
+.welcoming-statement {
+  transition: transform 1.5s ease;
+  width: 40%;
+  padding: 0px 20px;
+  text-align: -webkit-center;
+}
+
+.welcoming-statement.move-left {
+  transform: translateX(-150%);
+}
+<<<<<<< HEAD
+.category-card{
+  width: 330px;
+  height:360px;
+background-color: #ffffff;
+box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+padding: 5px;
+border-radius: 20px;
+}
+.secondory-color{
+  color:#E3655B;
+
+}
+.primary-color{
+  color: #174548;
+}
+.category-image{
+  border-radius: 100%;
+  width: 200px;
+  height:200px
+}
+/* .bg-pattern{
+  background-image: url(./assets//images/pattern.png);
+  background-repeat: repeat;
+  height: 100vh;
+
+} */
+.background {
+  position: relative;
+  width: 100%;
+  height: 100%; /* Adjust size */
+  overflow: hidden;
+}
+
+.background::before {
+  content: "";
+  background: url('./assets//images/pattern.png') repeat center center/cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.6;
+  z-index: -1; /* Places the image behind content */
+}
+
+=======
+
+.category-card {
+  min-width: 300px;
+  height: 350px;
+  background-color: #ffffff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.bg-pattern {
+  background-image: url(./assets//images/pattern.png);
+  background-repeat: repeat;
+  height: 100vh;
+}
+
+.Home-Page {
+  height: 100vh;
+  padding-top: 1px;
+  background-image: url("/Users/noura/Desktop/foodiezreactproject/FoodiezReactProject/src/assets/images/pattern.png");
+}
+
+.Wlc-Contanier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15%;
+  width: 50%;
+  height: 37%;
+  margin-left: 25%;
+  padding: 40px 20px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.Wlc-Contanier h1 {
+  color: #e3655c;
+  margin-bottom: 15px;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.Wlc-Contanier h4 {
+  color: #184548;
+  margin-bottom: 15px;
+  font-family: inherit;
+  font-weight: 300;
+}
+>>>>>>> origin/main
