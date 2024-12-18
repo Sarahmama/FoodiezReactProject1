@@ -8,12 +8,12 @@ const CategoryItem = () => {
       <div className="category-card d-flex flex-column align-items-center justify-content-center secondory-color m-3">
         <div className="d-flex justify-content-center">
           <img className="category-image" src={pizza} />
+          {/* <img src={item.pic} alt={item.name} className="category-image" /> */}
         </div>
         <div className="mt-4">
-          <h2>Pizza</h2>
+          pizza
         </div>
       </div>
-      ;
     </>
   );
 };

@@ -4,10 +4,11 @@ import { fetchAllRecipe } from "../API/recipe";
 import { useQuery } from "@tanstack/react-query";
 import NewRecipeModal from "./NewRecipeModal";
 
+
 const RecipeList = () => {
   const [query, setQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
-
+  
   const {
     data: recipes,
     isLoading,
