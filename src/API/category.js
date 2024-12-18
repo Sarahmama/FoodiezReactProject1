@@ -17,6 +17,7 @@ const createCategory = async (name, image) => {
 
   return res.data;
 };
+
 const updateCategory = async (
   recipeId,
   name,
