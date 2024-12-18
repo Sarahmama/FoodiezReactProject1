@@ -14,7 +14,7 @@ const SignIn = () => {
     mutationKey: ["LogIn"],
     mutationFn: () => login(Data),
     onSuccess: () => {
-      navigate("/");
+      navigate("/Home");
     },
   });
   const handleChange = (e) => {
