@@ -13,7 +13,7 @@ const CategoryItem = ({ category }) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   const handleClick = () => {
-    navigate(`/categories/${recipe.id}`);
+    navigate(`/recipes/${category?._id}`);
   };
 
   return (
