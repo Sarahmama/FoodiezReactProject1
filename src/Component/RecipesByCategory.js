@@ -17,17 +17,13 @@ const RecipesByCategory = () => {
     error,
   } = useQuery({
     queryKey: ["recipes"],
-    queryFn: fetchOneRecipe(categoryId),
+    queryFn: () => fetchOneRecipe(categoryId),
   });
+  console.log("Filtered recipesssssss:", error);
 
-  const recipeList = recipes
-    // ?.filter((recipe) =>
-    //   recipe.name.toLowerCase().includes(query.toLowerCase())
-    // )
-    // ?
-
-    ?.map((recipe, i) => <RecipeItem recipe={recipe} key={i} />);
-  console.log("Filtered recipes:", recipeList);
+  const recipeList = recipes?.map((recipe, i) => (
+    <RecipeItem recipe={recipe} key={i} />
+  ));
   return (
     <>
       <div className="background">
