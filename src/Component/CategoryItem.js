@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../App.css"; // Ensure your custom styles are defined here
+import "../App.css";
 import { useNavigate } from "react-router-dom";
 import EditCategoryModal from "./EditRecipeModal";
 import logo from "../assets/images/project-logo 1.png";
@@ -9,7 +9,7 @@ const CategoryItem = ({ category }) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   const handleClick = () => {
-    navigate(`/categories/${recipe.id}`);
+    navigate(`/categories/${category.id}`);
   };
 
   return (

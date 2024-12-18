@@ -24,6 +24,16 @@ const router = createBrowserRouter([
     element: (
       <div>
         <Navbar />
+        <App />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/Home",
+    element: (
+      <div>
+        <Nav />
         <Home />
         <Footer />
       </div>
@@ -33,7 +43,7 @@ const router = createBrowserRouter([
     path: "/RegisterPage",
     element: (
       <div>
-        <NavReg />
+        <Navbar />
         <RegisterPage />
         <Footer />
       </div>
@@ -80,7 +90,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/RecipeDetail",
+    path: "/RecipeDetail/:id",
     element: (
       <div>
         <Nav />
