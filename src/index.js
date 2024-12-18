@@ -23,10 +23,16 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <div>
-        <Navbar />
-        <Home />
-        <Footer />
+      <div className="col">
+        <div className="row">
+          <Navbar />
+        </div>
+        <div className="row">
+          <Home />
+        </div>
+        <div className="row">
+          <Footer />
+        </div>
       </div>
     ),
   },
@@ -104,7 +110,9 @@ const router = createBrowserRouter([
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <div className="container-fluid">
+        <RouterProvider router={router} />
+      </div>
     </QueryClientProvider>
   </React.StrictMode>
 );
