@@ -1,7 +1,8 @@
 import React from "react";
 import RecipeItem from "./RecipeItem";
 
-const RecipeList = () => {
+const RecipeList = ({item}) => {
+  // setPetsList(petsList.filter(pet => pet.id !== id))
   return (
     <>
       <div className="App background text-center mt-4 secondory-color">
