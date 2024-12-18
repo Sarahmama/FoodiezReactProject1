@@ -14,7 +14,7 @@ const SignUp = () => {
     mutationKey: ["register"],
     mutationFn: () => register(Data),
     onSuccess: () => {
-      navigate("/");
+      navigate("/Home");
     },
   });
 
