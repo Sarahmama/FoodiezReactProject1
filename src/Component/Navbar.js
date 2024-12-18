@@ -23,48 +23,6 @@ const Nav = () => {
             <img src={logo} alt="Logo" className="h-14 w-500 mr-3" />
           </Link>
 
-          <div className="flex space-x-4 mx-8 items-center justify-center">
-            <NavLink
-              to="/"
-              style={({ isActive }) => ({
-                backgroundColor: isActive ? "#E4655C" : "white",
-                color: isActive ? "white" : "#E4655C",
-              })}
-              className="text-purple-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-large"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/Cetegories"
-              style={({ isActive }) => ({
-                backgroundColor: isActive ? "#E4655C" : "white",
-                color: isActive ? "white" : "#E4655C",
-              })}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Category
-            </NavLink>
-            <NavLink
-              to="/Recipes"
-              style={({ isActive }) => ({
-                backgroundColor: isActive ? "#E4655C" : "white",
-                color: isActive ? "white" : "#E4655C",
-              })}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Recipes
-            </NavLink>
-            <NavLink
-              to="/AboutUs"
-              style={({ isActive }) => ({
-                backgroundColor: isActive ? "#E4655C" : "white",
-                color: isActive ? "white" : "#E4655C",
-              })}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-            >
-              About Us
-            </NavLink>
-          </div>
 
           {/* Register icon and button on the right */}
           <div className="flex ml-auto items-center">

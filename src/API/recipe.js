@@ -1,8 +1,9 @@
 import instance from ".";
 
-const fetchOneRecipe = async (recipeId) => {
-  const res = await instance.get(`/recipes/${recipeId}`);
-  return res.data;
+const fetchOneRecipe = async (categoryId) => {
+  const data = await instance.get(`/recipes/${categoryId}`);
+  console.log(data, "this is the data ");
+  return data;
 };
 
 const fetchAllRecipe = async () => {

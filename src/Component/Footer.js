@@ -5,7 +5,7 @@ import tiktokIcon from "../tiktok.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#184548] py-4  mr-3 px-3 py-2 ">
+    <footer className="bg-[#184548] py-4  mr-3 px-3 py-2 mx-0">
       <div className=" flex justify-content-around">
         <div className="flex space-x-4 justify-content-center">
           <a href="https://www.instagram.com" target="_blank" rel="noreferrer">

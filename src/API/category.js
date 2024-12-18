@@ -1,13 +1,13 @@
 import instance from ".";
 
-const fetchOneCategory = async (recipeId) => {
-  const res = await instance.get(`/categories/${recipeId}`);
+const fetchOneCategory = async (categoryId) => {
+  const res = await instance.get(`/categories/${categoryId}`);
   return res.data;
 };
 
 const fetchAllCategory = async () => {
-  const res = await instance.get("/categories");
-  return res.data;
+  const data = await instance.get("/categories");
+  return data;
 };
 const createCategory = async (name, image) => {
   const res = await instance.post("/categories", {
