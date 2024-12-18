@@ -15,7 +15,7 @@ const EditRecipeModal = ({ show, setShowModal, recipeToEdit }) => {
       setName(recipeToEdit.name);
       setImage(recipeToEdit.image);
       setIngredients(
-        recipeToEdit.ingredients.map((ingredient) => ({ value: ingredient }))
+        recipeToEdit.ingredients?.map((ingredient) => ({ value: ingredient }))
       );
       setInstructions(recipeToEdit.instructions);
     }

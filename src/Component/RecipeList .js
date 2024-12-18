@@ -9,17 +9,20 @@ const RecipeList = () => {
   const [showModal, setShowModal] = useState(false);
 
   const {
-    data: Recipes,
+    data: recipes,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["Recipes"],
+    queryKey: ["recipes"],
     queryFn: fetchAllRecipe,
   });
 
-  const recipeList = Recipes?.filter((recipe) =>
-    recipe.name.toLowerCase().includes(query.toLowerCase())
-  ).map((recipe) => <RecipeItem recipe={recipe} key={recipe.id} />);
+  const recipeList = recipes
+    // ?.filter((recipe) =>
+    //   recipe.name.toLowerCase().includes(query.toLowerCase())
+    // )
+    // ?
+    ?.map((recipe, i) => <RecipeItem recipe={recipe} key={i} />);
   console.log("Filtered recipes:", recipeList);
   return (
     <>

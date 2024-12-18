@@ -6,7 +6,7 @@ body {
 }
 
 .App{
-height: 100vh;
+height: 100%;
 }
 
 .register-page {
@@ -155,8 +155,8 @@ border-radius: 20px;
 }
 .category-image{
   border-radius: 100%;
-  width: 200px;
-  height:200px
+  width: 150px;
+  height:150px
 }
 /* .bg-pattern{
   background-image: url(./assets//images/pattern.png);
