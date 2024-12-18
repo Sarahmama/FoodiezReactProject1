@@ -6,7 +6,9 @@ import NewRecipeModal from "./NewRecipeModal";
 
 const RecipeList = () => {
   const [query, setQuery] = useState("");
+  const [filter, setFilter] = useState("all");
   const [showModal, setShowModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const {
     data: recipes,
@@ -17,11 +19,24 @@ const RecipeList = () => {
     queryFn: fetchAllRecipe,
   });
 
+  const filteredrecipe = recipes?.filter((recipes) => {
+    if (filter !== "all" && recipes.neme !== filter) return false;
+
+    if (
+      searchTerm &&
+      !recipes.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+      return false;
+
+    return true;
+  });
+
   const recipeList = recipes
     // ?.filter((recipe) =>
     //   recipe.name.toLowerCase().includes(query.toLowerCase())
     // )
     // ?
+
     ?.map((recipe, i) => <RecipeItem recipe={recipe} key={i} />);
   console.log("Filtered recipes:", recipeList);
   return (
@@ -32,7 +47,8 @@ const RecipeList = () => {
             Recipes
           </h1>
           <input
-            onChange={(e) => setQuery(e.target.value)}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search Recipes..."
             className="border border-gray-300 rounded-md px-4 py-2 w-3/4 md:w-1/2 lg:w-1/3 shadow focus:outline-none focus:ring-2 focus:ring-green-400"
           />
