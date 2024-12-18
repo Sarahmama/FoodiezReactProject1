@@ -1,13 +1,28 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "../API/auth";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
-
+  const [Data, setData] = useState({
+    username: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  const { mutate } = useMutation({
+    mutationKey: ["LogIn"],
+    mutationFn: () => login(Data),
+    onSuccess: () => {
+      navigate("/");
+    },
+  });
+  const handleChange = (e) => {
+    setData({ ...Data, [e.target.name]: e.target.value });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted");
+    mutate();
   };
 
   return (
@@ -17,7 +32,7 @@ const SignIn = () => {
         style={{
           borderRadius: "25px",
           width: "100%",
-          maxWidth: "600px", 
+          maxWidth: "600px",
         }}
       >
         <div className="row g-0">
@@ -26,16 +41,17 @@ const SignIn = () => {
 
             <form className="w-100" onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label htmlFor="email" className="form-label">
-                  Email
+                <label htmlFor="username" className="form-label">
+                  username
                 </label>
                 <input
-                  type="email"
-                  id="email"
+                  type="username"
+                  id="username"
+                  name="username"
                   className="form-control"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your username"
+                  value={Data.username}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -47,10 +63,11 @@ const SignIn = () => {
                 <input
                   type="password"
                   id="password"
+                  name="password"
                   className="form-control"
                   placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={Data.password}
+                  onChange={handleChange}
                   required
                 />
               </div>

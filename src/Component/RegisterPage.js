@@ -9,6 +9,9 @@ const RegisterPage = () => {
   const [moveTabs, setMoveTabs] = useState(false);
   const [contentHeight, setContentHeight] = useState("60%");
   const [tabContentHeight, settabContentHeight] = useState("80%");
+ 
+
+ 
 
   useEffect(() => {
     if (activeTab === "SignUp") {

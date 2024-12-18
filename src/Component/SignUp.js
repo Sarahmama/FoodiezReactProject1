@@ -1,19 +1,30 @@
 import React, { useState } from "react";
+import { register } from "../API/auth";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const [Data, setData] = useState({
+    username: "",
+    password: "",
+  });
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const { mutate } = useMutation({
+    mutationKey: ["register"],
+    mutationFn: () => register(Data),
+    onSuccess: () => {
+      navigate("/");
+    },
+  });
+
+  const handleChange = (e) => {
+    setData({ ...Data, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== repeatPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
-    console.log("Sign Up Form Submitted");
+    mutate();
   };
 
   return (
@@ -24,7 +35,7 @@ const SignUp = () => {
           style={{
             borderRadius: "25px",
             width: "100%",
-            maxWidth: "600px", 
+            maxWidth: "600px",
           }}
         >
           <div className="row g-0">
@@ -33,46 +44,17 @@ const SignUp = () => {
 
               <form className="w-100" onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <label htmlFor="name" className="form-label">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="form-control"
-                    placeholder="Enter your full name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="mb-4">
                   <label htmlFor="username" className="form-label">
                     Username
                   </label>
                   <input
                     type="text"
                     id="username"
+                    name="username"
                     className="form-control"
                     placeholder="Choose a username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="mb-4">
-                  <label htmlFor="email" className="form-label">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="form-control"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={Data.username}
+                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -84,28 +66,15 @@ const SignUp = () => {
                   <input
                     type="password"
                     id="password"
+                    name="password"
                     className="form-control"
                     placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={Data.password}
+                    onChange={handleChange}
                     required
                   />
                 </div>
 
-                <div className="mb-4">
-                  <label htmlFor="repeatPassword" className="form-label">
-                    Repeat Password
-                  </label>
-                  <input
-                    type="password"
-                    id="repeatPassword"
-                    className="form-control"
-                    placeholder="Repeat your password"
-                    value={repeatPassword}
-                    onChange={(e) => setRepeatPassword(e.target.value)}
-                    required
-                  />
-                </div>
                 <button type="submit" className="btn btn-primary w-100">
                   Sign Up
                 </button>
