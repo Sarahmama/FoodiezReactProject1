@@ -15,7 +15,7 @@ const RecipeItem = ({ recipe }) => {
   return (
     <>
       <div className="category-card d-flex flex-column align-items-center justify-content-center border rounded m-3 p-3">
-        <div className="d-flex justify-content-center mb-3 flex-column align-items-center rounded-2 pb-3">
+        <div className="w-75 d-flex justify-content-between mb-3 flex-column align-items-center rounded-2 pb-3">
           <img
             className="category-image img-fluid rounded"
             src={recipe.image || logo}

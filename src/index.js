@@ -15,6 +15,7 @@ import NavReg from "./Component/NavReg";
 import Navbar from "./Component/Navbar";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import RecipesByCategory from "./Component/RecipesByCategory";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const queryClient = new QueryClient();
@@ -65,6 +66,16 @@ const router = createBrowserRouter([
       <div>
         <Nav />
         <Recipes />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/Recipes/:categoryId",
+    element: (
+      <div>
+        <Nav />
+        <RecipesByCategory />
         <Footer />
       </div>
     ),

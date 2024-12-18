@@ -1,34 +1,39 @@
 import React, { useState } from "react";
-import CategoryItem from "./CategoryItem";
-import { fetchAllCategory } from "../API/category";
+import RecipeItem from "./RecipeItem";
+import { fetchAllRecipe, fetchOneRecipe } from "../API/recipe";
 import { useQuery } from "@tanstack/react-query";
-import NewCategoryModal from "./NewCategoryModal";
-const CategoryList = () => {
+import NewRecipeModal from "./NewRecipeModal";
+import { fetchOneCategory } from "../API/category";
+import { useParams } from "react-router";
+
+const RecipesByCategory = () => {
+  const { categoryId } = useParams();
   const [query, setQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const {
-    data: category,
+    data: recipes,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["categories"],
-    queryFn: fetchAllCategory,
+    queryKey: ["recipes"],
+    queryFn: fetchOneRecipe(categoryId),
   });
 
-  const recipeList = category
+  const recipeList = recipes
     // ?.filter((recipe) =>
     //   recipe.name.toLowerCase().includes(query.toLowerCase())
     // )
     // ?
-    ?.map((category, i) => <CategoryItem category={category} key={i} />);
-  console.log("Filtered categories:", CategoryList);
+
+    ?.map((recipe, i) => <RecipeItem recipe={recipe} key={i} />);
+  console.log("Filtered recipes:", recipeList);
   return (
     <>
       <div className="background">
         <div className="App text-center mt-4 p-4 rounded shadow">
           <h1 className="text-3xl font-bold mb-4 font-monospace text-[#184548]">
-            Category
+            Recipes
           </h1>
           <input
             onChange={(e) => setQuery(e.target.value)}
@@ -40,7 +45,7 @@ const CategoryList = () => {
               className="mt-4 bg-green-400 hover:bg-green-600 transition duration-300 text-white px-6 py-2 rounded-md shadow-lg"
               onClick={() => setShowModal(true)}
             >
-              Add New category
+              Add New Recipe
             </button>
           </div>
           <div className="flex flex-col md:flex-row flex-wrap gap-6 mt-4 justify-center items-center">
@@ -51,9 +56,9 @@ const CategoryList = () => {
         </div>
       </div>
 
-      <NewCategoryModal show={showModal} setShowModal={setShowModal} />
+      <NewRecipeModal show={showModal} setShowModal={setShowModal} />
     </>
   );
 };
 
-export default CategoryList;
+export default RecipesByCategory;
