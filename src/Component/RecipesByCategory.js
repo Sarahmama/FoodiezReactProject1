@@ -60,9 +60,15 @@ const RecipesByCategory = () => {
   };
   console.log("Filtered recipesssssss:", error);
 
-  const recipeList = recipes?.map((recipe, i) => (
-    <RecipeItem recipe={recipe} key={i} />
+  const filteredRecipes = recipes?.filter((recipe) =>
+    recipe.name?.toLowerCase().includes(query.toLowerCase())
+  );
+
+  // Render the list of filtered recipes
+  const recipeList = filteredRecipes?.map((recipe) => (
+    <RecipeItem key={recipe._id || recipe.id} recipe={recipe} />
   ));
+  
   return (
     <>
       <div className="background">

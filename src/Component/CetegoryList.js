@@ -21,12 +21,18 @@ const CategoryList = () => {
     queryFn: fetchAllCategory,
   });
 
+  const filteredCategories = category?.filter((category) =>
+    category.name.toLowerCase().includes(query.toLowerCase())
+  );
+  
+  const recipeList = filteredCategories?.map((category, i) => <CategoryItem category={category} key={i} />);
   useEffect(() => {
     if (category) {
       setName(category.name);
       setImage(category.image);
     }
   }, [category]);
+
 
   console.log("Filtered categories:", CategoryList);
   const { mutate } = useMutation({
