@@ -25,7 +25,7 @@ const Nav = () => {
 
           <div className="flex space-x-4 mx-8 items-center justify-center">
             <NavLink
-              to="/"
+              to="/Home"
               style={({ isActive }) => ({
                 backgroundColor: isActive ? "#E4655C" : "white",
                 color: isActive ? "white" : "#E4655C",
