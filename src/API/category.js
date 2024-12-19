@@ -32,4 +32,15 @@ const updateCategory = async (
     throw new Error("Error updating categories");
   }
 };
-export { fetchOneCategory, fetchAllCategory, createCategory, updateCategory };
+async function deleteCategory(id) {
+  const response = await instance.delete(`categories/${id}`);
+  console.log(response);
+  return response;
+}
+export {
+  fetchOneCategory,
+  fetchAllCategory,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+};

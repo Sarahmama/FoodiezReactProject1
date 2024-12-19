@@ -4,12 +4,14 @@ import "../App.css"; // Ensure your custom styles are defined here
 import { useNavigate } from "react-router-dom";
 import EditRecipeModal from "./EditRecipeModal";
 import logo from "../assets/images/project-logo 1.png";
-const RecipeItem = ({ recipe }) => {
+
+const RecipeItem = ({ recipe, setRecipeId }) => {
   const navigate = useNavigate();
   const [showEditModal, setShowEditModal] = useState(false);
 
   const handleClick = () => {
-    navigate(`/RecipeDetail/${recipe._id}`);
+    setRecipeId(recipe.id); // Pass the recipe id instead of constructing a path
+    navigate(`/RecipeDetail/${recipe?._id}`); // Navigate to
   };
 
   return (
