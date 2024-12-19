@@ -33,7 +33,6 @@ const CategoryList = () => {
     }
   }, [category]);
 
-
   console.log("Filtered categories:", CategoryList);
   const { mutate } = useMutation({
     mutationFn: () =>
@@ -53,7 +52,7 @@ const CategoryList = () => {
   const handleCloseModal = () => {
     setShowEditModal(false);
   };
-  const recipeList = category?.map((category, i) => (
+  const recipeLists = category?.map((category, i) => (
     <CategoryItem category={category} key={i} />
   ));
   return (
@@ -79,7 +78,7 @@ const CategoryList = () => {
           <div className="flex flex-col md:flex-row flex-wrap gap-6 mt-4 justify-center items-center">
             {isLoading && <h1 className="text-lg">Loading...</h1>}
             {error && <h1 className="text-red-500">{JSON.stringify(error)}</h1>}
-            {!isLoading && !error && recipeList}
+            {!isLoading && !error && recipeLists}
           </div>
         </div>
       </div>
