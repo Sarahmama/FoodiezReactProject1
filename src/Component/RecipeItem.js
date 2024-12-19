@@ -9,7 +9,7 @@ const RecipeItem = ({ recipe }) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   const handleClick = () => {
-    navigate(`/recipes/${recipe.id}`);
+    navigate(`/RecipeDetail/${recipe._id}`);
   };
 
   return (
