@@ -30,7 +30,7 @@ const CategoryItem = ({ category }) => {
   });
 
   const handleClick = () => {
-    navigate(`/recipes/${category?._id}`);
+    navigate(`/Recipes/${category?._id}`);
   };
 
   const handleEdit = () => {

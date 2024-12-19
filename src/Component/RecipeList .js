@@ -20,25 +20,8 @@ const RecipeList = ({ recipe }) => {
     enabled: false,
   });
 
-  const filteredrecipe = recipes?.filter((recipes) => {
-    if (filter !== "all" && recipes.neme !== filter) return false;
 
-    if (
-      searchTerm &&
-      !recipes.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-      return false;
-
-    return true;
-  });
-
-  const recipeList = recipes
-    // ?.filter((recipe) =>
-    //   recipe.name.toLowerCase().includes(query.toLowerCase())
-    // )
-    // ?
-
-    ?.map((recipe, i) => (
+  const recipeList = recipes?.map((recipe, i) => (
       <RecipeItem key={recipe.id} recipe={recipe} setRecipeId={setRecipeId} />
     ));
   console.log("Filtered recipes:", recipeList);
