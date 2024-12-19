@@ -1,4 +1,4 @@
-import instance from ".";
+import instance from "./index";
 
 const fetchOneCategory = async (categoryId) => {
   const res = await instance.get(`/categories/${categoryId}`);
@@ -18,6 +18,7 @@ const createCategory = async (name, image) => {
   return res.data;
 };
 
+
 const updateCategory = async (
   recipeId,
   name,
@@ -35,6 +36,5 @@ const updateCategory = async (
   if (!response.ok) {
     throw new Error("Error updating categories");
   }
-  return response.json();
 };
 export { fetchOneCategory, fetchAllCategory, createCategory, updateCategory };
