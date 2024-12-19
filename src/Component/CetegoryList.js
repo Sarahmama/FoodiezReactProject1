@@ -33,13 +33,6 @@ const CategoryList = () => {
     }
   }, [category]);
 
-=========
-  const filteredCategories = category?.filter((category) =>
-    category.name.toLowerCase().includes(query.toLowerCase())
-  );
-  
-  const recipeList = filteredCategories?.map((category, i) => <CategoryItem category={category} key={i} />);
->>>>>>>>> Temporary merge branch 2
   console.log("Filtered categories:", CategoryList);
   const { mutate } = useMutation({
     mutationFn: () =>
