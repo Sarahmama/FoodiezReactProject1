@@ -24,8 +24,10 @@ const CategoryList = () => {
   const filteredCategories = category?.filter((category) =>
     category.name.toLowerCase().includes(query.toLowerCase())
   );
-  
-  const recipeList = filteredCategories?.map((category, i) => <CategoryItem category={category} key={i} />);
+
+  const recipeList = filteredCategories?.map((category, i) => (
+    <CategoryItem category={category} key={i} />
+  ));
   useEffect(() => {
     if (category) {
       setName(category.name);
@@ -78,7 +80,7 @@ const CategoryList = () => {
           <div className="flex flex-col md:flex-row flex-wrap gap-6 mt-4 justify-center items-center">
             {isLoading && <h1 className="text-lg">Loading...</h1>}
             {error && <h1 className="text-red-500">{JSON.stringify(error)}</h1>}
-            {!isLoading && !error && recipeLists}
+            {!isLoading && !error && recipeList}
           </div>
         </div>
       </div>
