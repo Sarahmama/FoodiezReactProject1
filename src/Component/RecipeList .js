@@ -4,12 +4,11 @@ import { fetchAllRecipe } from "../API/recipe";
 import { useQuery } from "@tanstack/react-query";
 import NewRecipeModal from "./NewRecipeModal";
 
-
-const RecipeList = () => {
+const RecipeList = ({ recipe }) => {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");
   const [showModal, setShowModal] = useState(false);
-
+  const [recipeId, setRecipeId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const {
     data: recipes,
@@ -18,6 +17,7 @@ const RecipeList = () => {
   } = useQuery({
     queryKey: ["recipes"],
     queryFn: fetchAllRecipe,
+    enabled: false,
   });
 
   const filteredrecipe = recipes?.filter((recipes) => {
@@ -38,7 +38,9 @@ const RecipeList = () => {
     // )
     // ?
 
-    ?.map((recipe, i) => <RecipeItem recipe={recipe} key={i} />);
+    ?.map((recipe, i) => (
+      <RecipeItem key={recipe.id} recipe={recipe} setRecipeId={setRecipeId} />
+    ));
   console.log("Filtered recipes:", recipeList);
   return (
     <>

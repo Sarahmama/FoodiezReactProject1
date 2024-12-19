@@ -33,4 +33,15 @@ const updateRecipe = async (
   }
   return response.json();
 };
-export { fetchOneRecipe, fetchAllRecipe, createRecipe, updateRecipe };
+async function deleteRecipe(recipeId) {
+  const response = await instance.delete(`recipes/${recipeId}`);
+  console.log(response);
+  return response;
+}
+export {
+  fetchOneRecipe,
+  fetchAllRecipe,
+  createRecipe,
+  updateRecipe,
+  deleteRecipe,
+};

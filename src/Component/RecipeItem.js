@@ -8,6 +8,7 @@ import logo from "../assets/images/project-logo 1.png";
 import { updateRecipe } from "../API/recipe";
 
 const RecipeItem = ({ recipe }) => {
+
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [showEditModal, setShowEditModal] = useState(false);
@@ -40,7 +41,8 @@ const RecipeItem = ({ recipe }) => {
   });
 
   const handleClick = () => {
-    navigate(`/RecipeDetail/${recipe._id}`);
+    setRecipeId(recipe.id); // Pass the recipe id instead of constructing a path
+    navigate(`/RecipeDetail/${recipe?._id}`); // Navigate to
   };
 
   const handleCloseModal = () => {
