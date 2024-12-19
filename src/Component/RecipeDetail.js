@@ -7,6 +7,7 @@ import EditRecipeModal from "./EditRecipeModal";
 import logo from "../assets/images/project-logo 1.png";
 const RecipeDetail = () => {
   const { recipeId } = useParams();
+  console.log(recipeId);
   const {
     data: recipe,
     isLoading,
@@ -55,7 +56,7 @@ const RecipeDetail = () => {
             {recipe?.name}
           </h1>
           <img
-            src={recipe.image || logo}
+            src={recipe?.image || logo}
             alt={recipe?.name}
             className="h-auto w-full mb-4"
           />
@@ -63,11 +64,10 @@ const RecipeDetail = () => {
             Ingredients:
           </h4>
           <ol className="max-w-2xl text-[#184548] text-justify px-4 mb-6 list-decimal font-inherit">
-            {[...recipe?.ingredients, ...selectedIngredients].map(
-              (ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              )
-            )}
+            {typeof recipe?.ingredients === "Array" &&
+              [...recipe?.ingredients, ...selectedIngredients].map(
+                (ingredient, index) => <li key={index}>{ingredient}</li>
+              )}
           </ol>
 
           <h4 className="text-3xl font-bold text-[#E4655C] mb-4 flex text-justify font-monospace">
@@ -93,7 +93,7 @@ const RecipeDetail = () => {
               visible={modalVisible}
               onClose={() => setModalVisible(false)}
               onAddIngredients={addSelectedIngredients}
-              availableIngredients={recipe.ingredients.filter(
+              availableIngredients={recipe.ingredients?.filter(
                 (ingredient) => !selectedIngredients.includes(ingredient)
               )}
             />

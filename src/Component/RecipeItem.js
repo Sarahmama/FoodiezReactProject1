@@ -10,7 +10,7 @@ const RecipeItem = ({ recipe, setRecipeId }) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   const handleClick = () => {
-    setRecipeId(recipe.id); // Pass the recipe id instead of constructing a path
+    setRecipeId(recipe._id); // Pass the recipe id instead of constructing a path
     navigate(`/RecipeDetail/${recipe?._id}`); // Navigate to
   };
 

@@ -32,6 +32,8 @@ const RecipeList = ({ recipe }) => {
     return true;
   });
 
+  console.log(setRecipeId);
+
   const recipeList = recipes
     // ?.filter((recipe) =>
     //   recipe.name.toLowerCase().includes(query.toLowerCase())

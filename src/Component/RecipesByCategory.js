@@ -10,6 +10,7 @@ const RecipesByCategory = () => {
   const { categoryId } = useParams();
   const [query, setQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [recipeId, setRecipeId] = useState(null);
 
   const {
     data: recipes,
@@ -22,7 +23,7 @@ const RecipesByCategory = () => {
   console.log("Filtered recipesssssss:", error);
 
   const recipeList = recipes?.map((recipe, i) => (
-    <RecipeItem recipe={recipe} key={i} />
+    <RecipeItem recipe={recipe} key={i} setRecipeId={setRecipeId} />
   ));
   return (
     <>
