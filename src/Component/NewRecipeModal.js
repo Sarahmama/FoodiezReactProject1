@@ -1,121 +1,77 @@
 import React, { useState } from "react";
-import Input from "./Input";
-import { createRecipe } from "../API/recipe";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createRecipe } from "../API/recipe";
+import { useParams } from "react-router";
 
 const NewRecipeModal = ({ show, setShowModal }) => {
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [ingredients, setIngredients] = useState([{ value: "" }]);
-  const [instructions, setInstructions] = useState(""); // Single string for instructions
-
   const queryClient = useQueryClient();
+  const { categoryId } = useParams();
 
-  const { mutate } = useMutation({
-    mutationKey: ["add recipe"],
-    mutationFn: () =>
-      createRecipe(
-        name,
-        ingredients.map((i) => i.value),
-        instructions, // Single string for instructions
-        image
-      ),
+  const [formData, setFormData] = useState({
+    name: "",
+    ingredients: "",
+    instructions: "",
+    image: "",
+    categoryId: "",
+  });
+
+  const mutation = useMutation({
+    mutationFn: (newRecipe) => createRecipe(newRecipe),
     onSuccess: () => {
       queryClient.invalidateQueries(["recipes"]);
       setShowModal(false);
     },
   });
 
-  const handleIngredientChange = (index, value) => {
-    const newIngredients = [...ingredients];
-    newIngredients[index].value = value;
-    setIngredients(newIngredients);
-  };
-
-  const addIngredient = () => {
-    setIngredients([...ingredients, { value: "" }]);
-  };
-
-  const removeIngredient = (index) => {
-    const newIngredients = ingredients.filter((_, i) => i !== index);
-    setIngredients(newIngredients);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate(formData);
   };
 
   if (!show) return null;
 
   return (
-    <div className="inset-0 fixed flex justify-center items-center flex-col z-20 overflow-hidden">
-      <div className="bg-black absolute z-0 opacity-70 inset-0"></div>
-      <div className="relative z-10 flex flex-col border-[2px] border-gray-300 rounded-lg w-[90%] md:w-[40%] bg-white p-6">
-        <button
-          className="absolute right-3 top-3 w-[80px] bg-red-500 text-white rounded-md hover:bg-red-600 transition"
-          onClick={() => setShowModal(false)}
-        >
-          Close
-        </button>
-
-        <h2 className="text-xl font-bold mb-4">Add a New Recipe</h2>
-
-        <div className="overflow-y-auto max-h-60 mb-4">
-          <Input
-            name="Recipe Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+    <div className="modal">
+      <div className="modal-content">
+        <h2>Add New Recipe</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Name"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            required
           />
-
-          <Input
-            name="Image Link"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+          <textarea
+            placeholder="Description"
+            value={formData.description}
+            onChange={(e) =>
+              setFormData({ ...formData, description: e.target.value })
+            }
+            required
           />
-
-          <div>
-            <h4 className="font-semibold mb-2">Ingredients</h4>
-            {ingredients.map((ingredient, index) => (
-              <div key={index} className="flex gap-2 mb-2">
-                <Input
-                  value={ingredient.value}
-                  onChange={(e) =>
-                    handleIngredientChange(index, e.target.value)
-                  }
-                  placeholder={`Ingredient ${index + 1}`}
-                />
-                <button
-                  type="button"
-                  onClick={() => removeIngredient(index)}
-                  className="text-red-600 hover:text-red-800 transition"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              type="button"
-              onClick={addIngredient}
-              className="text-blue-600 hover:text-blue-800 transition"
-            >
-              Add Ingredient
-            </button>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-2">Instructions</h4>
-            <textarea
-              value={instructions}
-              onChange={(e) => setInstructions(e.target.value)}
-              placeholder="Write your instructions here..."
-              className="w-full p-2 border border-gray-300 rounded-md"
-              rows="4"
-            />
-          </div>
-        </div>
-
-        <button
-          onClick={mutate}
-          className="bg-green-500 text-white rounded-md w-full py-2 hover:bg-green-600 transition"
-        >
-          Submit
-        </button>
+          <textarea
+            placeholder="Ingredients"
+            value={formData.ingredients}
+            onChange={(e) =>
+              setFormData({ ...formData, ingredients: e.target.value })
+            }
+            required
+          />
+          <input
+            type="hidden"
+            value={formData.categoryId}
+            onChange={(e) =>
+              setFormData({ ...formData, categoryId: categoryId })
+            }
+          />
+          <button type="submit" disabled={mutation.isLoading}>
+            {mutation.isLoading ? "Adding..." : "Add Recipe"}
+          </button>
+          <button type="button" onClick={() => setShowModal(false)}>
+            Cancel
+          </button>
+        </form>
       </div>
     </div>
   );
