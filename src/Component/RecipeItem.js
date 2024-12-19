@@ -8,11 +8,11 @@ import logo from "../assets/images/project-logo 1.png";
 import { updateRecipe } from "../API/recipe";
 
 const RecipeItem = ({ recipe }) => {
-
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [showEditModal, setShowEditModal] = useState(false);
   const [name, setName] = useState("");
+
   const [image, setImage] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState("");
@@ -122,7 +122,10 @@ const RecipeItem = ({ recipe }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="recipeIngredients" className="font-weight-bold">
+                  <label
+                    htmlFor="recipeIngredients"
+                    className="font-weight-bold"
+                  >
                     Ingredients
                   </label>
                   <textarea
@@ -130,13 +133,18 @@ const RecipeItem = ({ recipe }) => {
                     id="recipeIngredients"
                     value={ingredients.join(", ")}
                     onChange={(e) =>
-                      setIngredients(e.target.value.split(",").map((item) => item.trim()))
+                      setIngredients(
+                        e.target.value.split(",").map((item) => item.trim())
+                      )
                     }
                     placeholder="Enter ingredients, separated by commas"
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="recipeInstructions" className="font-weight-bold">
+                  <label
+                    htmlFor="recipeInstructions"
+                    className="font-weight-bold"
+                  >
                     Instructions
                   </label>
                   <textarea
