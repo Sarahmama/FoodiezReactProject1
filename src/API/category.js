@@ -1,4 +1,4 @@
-import instance from ".";
+import instance from "./index";
 
 const fetchOneCategory = async (categoryId) => {
   const res = await instance.get(`/categories/${categoryId}`);
@@ -17,23 +17,18 @@ const createCategory = async (name, image) => {
 
   return res.data;
 };
-const updateCategory = async (
-  recipeId,
-  name,
-  ingredients,
-  instructions,
-  image
-) => {
-  const response = await fetch(`/categories/${recipeId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name, ingredients, instructions, image }),
-  });
-  if (!response.ok) {
+const updateCategory = async (recipeId, name, ingredients, instructions, image) => {
+  try {
+    const response = await instance.put(`/categories/${recipeId}`, {
+      name,
+      ingredients,
+      instructions,
+      image,
+    });
+
+    return response.data; // Return the response data
+  } catch (error) {
     throw new Error("Error updating categories");
   }
-  return response.json();
 };
 export { fetchOneCategory, fetchAllCategory, createCategory, updateCategory };

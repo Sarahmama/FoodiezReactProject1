@@ -16,12 +16,7 @@ const CategoryList = () => {
     queryFn: fetchAllCategory,
   });
 
-  const recipeList = category
-    // ?.filter((recipe) =>
-    //   recipe.name.toLowerCase().includes(query.toLowerCase())
-    // )
-    // ?
-    ?.map((category, i) => <CategoryItem category={category} key={i} />);
+  const recipeList = category?.map((category, i) => <CategoryItem category={category} key={i} />);
   console.log("Filtered categories:", CategoryList);
   return (
     <>
