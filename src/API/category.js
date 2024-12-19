@@ -37,4 +37,15 @@ const updateCategory = async (
   }
   return response.json();
 };
-export { fetchOneCategory, fetchAllCategory, createCategory, updateCategory };
+async function deleteCategory(id) {
+  const response = await instance.delete(`categories/${id}`);
+  console.log(response);
+  return response;
+}
+export {
+  fetchOneCategory,
+  fetchAllCategory,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+};
