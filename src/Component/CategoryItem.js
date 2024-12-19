@@ -21,7 +21,13 @@ const CategoryItem = ({ category }) => {
     }
   }, [category]);
   const { mutate } = useMutation({
-    mutationFn: () => updateCategory(category._id, { name, image,  ingredients: [], instructions: "" }),
+    mutationFn: () =>
+      updateCategory(category._id, {
+        name,
+        image,
+        ingredients: [],
+        instructions: "",
+      }),
     onSuccess: () => {
       console.log(category);
       queryClient.invalidateQueries(["categories"]); // Replace with your query key
@@ -39,7 +45,6 @@ const CategoryItem = ({ category }) => {
 
   const handleCloseModal = () => {
     setShowEditModal(false);
-
   };
 
   return (

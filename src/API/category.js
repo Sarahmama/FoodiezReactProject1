@@ -9,13 +9,10 @@ const fetchAllCategory = async () => {
   const data = await instance.get("/categories");
   return data;
 };
-const createCategory = async (name, image) => {
-  const res = await instance.post("/categories", {
-    name: name,
-    image: image,
-  });
+const createCategory = async ({ name, image }) => {
+  const data = await instance.post("/categories", { name, image });
 
-  return res.data;
+  return data;
 };
 
 const updateCategory = async (

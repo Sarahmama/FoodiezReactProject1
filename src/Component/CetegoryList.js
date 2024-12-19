@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CategoryItem from "./CategoryItem";
-import { fetchAllCategory } from "../API/category";
-import { useQuery } from "@tanstack/react-query";
+import { createCategory, fetchAllCategory } from "../API/category";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import NewCategoryModal from "./NewCategoryModal";
+import { useNavigate } from "react-router";
 const CategoryList = () => {
   const [query, setQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
-
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
   const {
     data: category,
     isLoading,
@@ -21,7 +26,36 @@ const CategoryList = () => {
   );
   
   const recipeList = filteredCategories?.map((category, i) => <CategoryItem category={category} key={i} />);
+  useEffect(() => {
+    if (category) {
+      setName(category.name);
+      setImage(category.image);
+    }
+  }, [category]);
+
+
   console.log("Filtered categories:", CategoryList);
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      createCategory({
+        name,
+        image,
+      }),
+    onSuccess: () => {
+      console.log(category);
+      queryClient.invalidateQueries(["categories"]); // Replace with your query key
+      setShowEditModal(false);
+    },
+  });
+  const handleAdd = () => {
+    setShowEditModal(true);
+  };
+  const handleCloseModal = () => {
+    setShowEditModal(false);
+  };
+  const recipeList = category?.map((category, i) => (
+    <CategoryItem category={category} key={i} />
+  ));
   return (
     <>
       <div className="background">
@@ -37,7 +71,7 @@ const CategoryList = () => {
           <div className="flex justify-center mt-4">
             <button
               className="mt-4 bg-green-400 hover:bg-green-600 transition duration-300 text-white px-6 py-2 rounded-md shadow-lg"
-              onClick={() => setShowModal(true)}
+              onClick={handleAdd}
             >
               Add New category
             </button>
@@ -50,7 +84,77 @@ const CategoryList = () => {
         </div>
       </div>
 
-      <NewCategoryModal show={showModal} setShowModal={setShowModal} />
+      {/* Modal */}
+      {showEditModal && (
+        <div
+          className="modal fade show d-block"
+          tabIndex="-1"
+          role="dialog"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+        >
+          <div
+            className="modal-dialog modal-lg modal-dialog-centered"
+            role="document"
+            style={{ maxWidth: "600px", width: "90%" }}
+          >
+            <div className="modal-content">
+              <div className="modal-header bg-primary text-white ">
+                <h5 className="modal-title">Add Category</h5>
+              </div>
+              <div className="modal-body">
+                <div className="form-group">
+                  <label
+                    htmlFor="categoryName"
+                    className="catcss font-weight-bold"
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    className="Edit-control"
+                    id="categoryName"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter category name"
+                  />
+                </div>
+                <div className="form-group">
+                  <label
+                    htmlFor="categoryImage"
+                    className="catcss font-weight-bold"
+                  >
+                    Image
+                  </label>
+                  <input
+                    type="text"
+                    className="Edit-control"
+                    id="categoryImage"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                    placeholder="Enter category image URL"
+                  />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleCloseModal}
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={mutate}
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
