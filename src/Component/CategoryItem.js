@@ -39,6 +39,7 @@ const CategoryItem = ({ category }) => {
 
   const handleCloseModal = () => {
     setShowEditModal(false);
+
   };
 
   return (

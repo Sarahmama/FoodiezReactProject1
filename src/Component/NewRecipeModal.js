@@ -7,8 +7,8 @@ const NewRecipeModal = ({ show, setShowModal }) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [ingredients, setIngredients] = useState([{ value: "" }]);
-  const [instructions, setInstructions] = useState(""); // Single string for instructions
-
+  const [instructions, setInstructions] = useState("");
+  const [categories, setCategories] = useState([{ value: "" }]);
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
@@ -16,8 +16,9 @@ const NewRecipeModal = ({ show, setShowModal }) => {
     mutationFn: () =>
       createRecipe(
         name,
-        ingredients.map((i) => i.value),
-        instructions, // Single string for instructions
+        categories.map((c) => c.value).join(", "),
+        ingredients.map((i) => i.value).join(", "),
+        instructions,
         image
       ),
     onSuccess: () => {
@@ -26,10 +27,25 @@ const NewRecipeModal = ({ show, setShowModal }) => {
     },
   });
 
+  const handleCategoryChange = (index, value) => {
+    const newCategories = [...categories];
+    newCategories[index].value = value;
+    setCategories(newCategories);
+  };
+
   const handleIngredientChange = (index, value) => {
     const newIngredients = [...ingredients];
     newIngredients[index].value = value;
     setIngredients(newIngredients);
+  };
+
+  const addCategory = () => {
+    setCategories([...categories, { value: "" }]);
+  };
+
+  const removeCategory = (index) => {
+    const newCategories = categories.filter((_, i) => i !== index);
+    setCategories(newCategories);
   };
 
   const addIngredient = () => {
@@ -71,6 +87,7 @@ const NewRecipeModal = ({ show, setShowModal }) => {
 
           <div>
             <h4 className="font-semibold mb-2">Ingredients</h4>
+
             {ingredients.map((ingredient, index) => (
               <div key={index} className="flex gap-2 mb-2">
                 <Input
@@ -98,21 +115,46 @@ const NewRecipeModal = ({ show, setShowModal }) => {
             </button>
           </div>
 
-          <div>
-            <h4 className="font-semibold mb-2">Instructions</h4>
-            <textarea
-              value={instructions}
-              onChange={(e) => setInstructions(e.target.value)}
-              placeholder="Write your instructions here..."
-              className="w-full p-2 border border-gray-300 rounded-md"
-              rows="4"
-            />
-          </div>
+          <h4 className="font-semibold mb-2">Categories</h4>
+          {categories.map((category, index) => (
+            <div key={index} className="flex gap-2 mb-2">
+              <Input
+                value={category.value}
+                onChange={(e) => handleCategoryChange(index, e.target.value)}
+                placeholder={`Category ${index + 1}`}
+              />
+              <button
+                type="button"
+                onClick={() => removeCategory(index)}
+                className="text-red-600 hover:text-red-800 transition"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={addCategory}
+            className="text-blue-600 hover:text-blue-800 transition"
+          >
+            Add Category
+          </button>
+        </div>
+
+        <div>
+          <h4 className="font-semibold mb-2">Instructions</h4>
+          <textarea
+            value={instructions}
+            onChange={(e) => setInstructions(e.target.value)}
+            placeholder="Write your instructions here..."
+            className="w-full p-2 border border-gray-300 rounded-md"
+            rows="4"
+          />
         </div>
 
         <button
           onClick={mutate}
-          className="bg-green-500 text-white rounded-md w-full py-2 hover:bg-green-600 transition"
+          className="bg-green-500 text-white rounded-md w-full py-2 hover:bg-green-600 transition mt-4"
         >
           Submit
         </button>

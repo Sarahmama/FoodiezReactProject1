@@ -25,7 +25,7 @@ const Nav = () => {
 
           <div className="flex space-x-4 mx-8 items-center justify-center">
             <NavLink
-              to="/"
+              to="/Home"
               style={({ isActive }) => ({
                 backgroundColor: isActive ? "#E4655C" : "white",
                 color: isActive ? "white" : "#E4655C",
@@ -68,25 +68,19 @@ const Nav = () => {
 
           {/* User Icon and Dropdown */}
           <div className="relative flex items-center ml-auto text-#E4655C ">
-            <img src={R} alt="Logo" className="h-10 w-55 mr-3" />
-            <i
-              className="fas fa-user-circle mr-2 cursor-pointer"
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-            />
-            <span>{username}</span>
-
-            {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-gray-900 text-white rounded-md shadow-lg z-10">
-                <div className="py-2">
-                  <button
-                    onClick={logout}
-                    className="block px-4 py-2 text-sm hover:bg-gray-700 w-full text-left"
-                  >
-                    Logout
-                  </button>
-                </div>
-              </div>
-            )}
+            <NavLink
+              to="/"
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "white" : "#E4655C",
+                  color: isActive ? "#E4655C" : "white",
+                };
+              }}
+              className="text-gray-300 hover:bg-[#E4655C] hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              onClick={logout}
+            >
+              Logout
+            </NavLink>
           </div>
         </div>
       </div>
