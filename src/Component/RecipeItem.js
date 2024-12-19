@@ -41,10 +41,8 @@ const RecipeItem = ({ recipe }) => {
   });
 
   const handleClick = () => {
-    setRecipeId(recipe.id); // Pass the recipe id instead of constructing a path
-    navigate(`/RecipeDetail/${recipe?._id}`); // Navigate to
+    navigate(`/RecipeDetail/${recipe._id}`);
   };
-
   const handleCloseModal = () => {
     setShowEditModal(false);
   };
@@ -96,7 +94,7 @@ const RecipeItem = ({ recipe }) => {
               </div>
               <div className="modal-body">
                 <div className="form-group">
-                  <label htmlFor="recipeName" className="font-weight-bold">
+                  <label htmlFor="recipeName" className="catcss font-weight-bold">
                     Name
                   </label>
                   <input
@@ -109,7 +107,7 @@ const RecipeItem = ({ recipe }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="recipeImage" className="font-weight-bold">
+                  <label htmlFor="recipeImage" className="catcss font-weight-bold">
                     Image
                   </label>
                   <input
