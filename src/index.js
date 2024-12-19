@@ -101,7 +101,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/RecipeDetail/:id",
+    path: "/RecipeDetail/:recipeId",
     element: (
       <div>
         <Nav />

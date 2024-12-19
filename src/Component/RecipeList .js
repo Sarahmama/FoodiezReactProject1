@@ -21,7 +21,9 @@ const RecipeList = ({ recipe }) => {
   });
 
 
+
   const recipeList = recipes?.map((recipe, i) => (
+
       <RecipeItem key={recipe.id} recipe={recipe} setRecipeId={setRecipeId} />
     ));
   console.log("Filtered recipes:", recipeList);

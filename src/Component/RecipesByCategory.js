@@ -10,6 +10,9 @@ const RecipesByCategory = () => {
   const { categoryId } = useParams();
   const [query, setQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
+
+  const [recipeId, setRecipeId] = useState(null);
+
   const [name, setName] = useState("");
   const queryClient = useQueryClient();
   const [showAddModal, setShowAddModal] = useState(false);
@@ -18,6 +21,7 @@ const RecipesByCategory = () => {
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState("");
   const [category, setCategory] = useState("");
+
 
   const {
     data: recipes,
@@ -60,6 +64,7 @@ const RecipesByCategory = () => {
   };
   console.log("Filtered recipesssssss:", error);
 
+
   const filteredRecipes = recipes?.filter((recipe) =>
     recipe.name?.toLowerCase().includes(query.toLowerCase())
   );
@@ -67,6 +72,7 @@ const RecipesByCategory = () => {
   // Render the list of filtered recipes
   const recipeList = filteredRecipes?.map((recipe) => (
     <RecipeItem key={recipe._id || recipe.id} recipe={recipe} />
+
   ));
   
   return (

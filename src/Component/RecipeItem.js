@@ -41,10 +41,14 @@ const RecipeItem = ({ recipe }) => {
   });
 
   const handleClick = () => {
-    navigate(`/RecipeDetail/${recipe._id}`);
+
+    setRecipeId(recipe._id); // Pass the recipe id instead of constructing a path
+    navigate(`/RecipeDetail/${recipe?._id}`); // Navigate to
+
   };
   const handleCloseModal = () => {
     setShowEditModal(false);
+
   };
 
   return (
