@@ -18,20 +18,15 @@ const createCategory = async (name, image) => {
   return res.data;
 };
 
-
 const updateCategory = async (
   recipeId,
-  name,
-  ingredients,
-  instructions,
-  image
+  { name, ingredients, instructions, image }
 ) => {
-  const response = await fetch(`/categories/${recipeId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name, ingredients, instructions, image }),
+  const response = await instance.put(`/categories/${recipeId}`, {
+    name,
+    ingredients,
+    instructions,
+    image,
   });
   if (!response.ok) {
     throw new Error("Error updating categories");
